@@ -410,8 +410,8 @@ Transform:
   m_GameObject: {fileID: 475618470}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 23.48, z: 44.98}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 1.8, y: 22.1, z: 44.98}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1163656852}
@@ -613,7 +613,7 @@ Transform:
   m_GameObject: {fileID: 656262679}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 8.88, y: 23.8, z: -3.5}
+  m_LocalPosition: {x: 8.88, y: 23.8, z: -1.07}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -691,7 +691,7 @@ Transform:
   m_GameObject: {fileID: 854470671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.365, y: 20.3, z: 11.6}
+  m_LocalPosition: {x: -15.365, y: 22.73, z: 11.6}
   m_LocalScale: {x: 0.27, y: 25, z: 21}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -955,6 +955,37 @@ Transform:
   - {fileID: 2030601200}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1544425007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544425008}
+  m_Layer: 0
+  m_Name: BricksMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1544425008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544425007}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -150, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863398415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1127,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 1.1, y: 20.3, z: 45.5}
-  m_LocalScale: {x: 0.27, y: 25, z: 21}
+  m_LocalScale: {x: 0.27, y: 29.55, z: 26.14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1452292511}
@@ -1188,3 +1219,4 @@ SceneRoots:
   - {fileID: 1452292511}
   - {fileID: 851360490}
   - {fileID: 1163656852}
+  - {fileID: 1544425008}
