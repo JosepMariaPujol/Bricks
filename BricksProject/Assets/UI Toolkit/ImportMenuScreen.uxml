@@ -2,7 +2,11 @@
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=36d7cd5e932fc4aa5a18ac116132cd4d&amp;type=3#MainMenuStyle"/>
     <ui:VisualElement name="Container" style="flex-grow: 1;">
         <ui:Label text="Import" name="Header" class="header"/>
-        <ui:Label text="File Reader" name="Label" class="label"/>
+        <ui:Label text="File Reader" name="SubHeader" class="label"/>
         <ui:Button text="Select File" name="SelectButton" class="button" style="background-image: url(&quot;project://database/Assets/UI/Textures/UI_atlas.psd?fileID=3353583685574914904&amp;guid=68de98d899585b7469e0fb40a0fcbc56&amp;type=3#bt_08&quot;);"/>
+        <ui:Label text="Selected File:" name="SelectedLabel" class="label"/>
+        <ui:TextField label="" placeholder-text="" name="FileInput"/>
+        <ui:Label text="File Content:" name="ContentLabel" class="label"/>
+        <ui:TextField label="" placeholder-text="" name="ContentInput"/>
     </ui:VisualElement>
 </ui:UXML>

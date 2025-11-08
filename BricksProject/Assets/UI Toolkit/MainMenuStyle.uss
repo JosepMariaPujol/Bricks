@@ -28,6 +28,7 @@
 .button:hover {
     background-color: rgb(0, 0, 0);
     scale: 1.1 1.1;
+    rotate: 1.5deg;
 }
 
 .label {

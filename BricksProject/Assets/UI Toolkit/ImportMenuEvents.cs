@@ -8,7 +8,10 @@ public class ImportMenuEvents : MonoBehaviour
     private UIDocument uiDocument;
     private Button selectButton;
     private Button importButton;
-
+    
+    private TextField selectInput;
+    private TextField contentInput;
+    
     private string filePath = "";
     private string fileContents = "";
     
