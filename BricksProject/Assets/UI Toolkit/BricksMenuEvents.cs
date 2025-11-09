@@ -16,6 +16,8 @@ public class BricksMenuEvents : MonoBehaviour
 
     private List<Brick> bricksCache;
 
+    private VisualElement infoContainer; // Container for brick info
+
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
@@ -28,6 +30,16 @@ public class BricksMenuEvents : MonoBehaviour
         // Register button callback
         previousButton?.RegisterCallback<ClickEvent>(OnPreviousClick);
         nextButton?.RegisterCallback<ClickEvent>(OnNextClick);
+
+        // Create a container for labels if not in UXML
+        infoContainer = root.Q<VisualElement>("InfoContainer");
+        if (infoContainer == null)
+        {
+            infoContainer = new VisualElement();
+            infoContainer.name = "InfoContainer";
+            infoContainer.style.flexDirection = FlexDirection.Column;
+            root.Add(infoContainer);
+        }
     }
 
     private void OnDisable()
@@ -40,11 +52,7 @@ public class BricksMenuEvents : MonoBehaviour
     {
         EnsureBricksCache();
         
-        if (index == 0)
-            index = bricksCache.Count - 1;
-        else
-            index--;
-        
+        index = (index == 0) ? bricksCache.Count - 1 : index - 1;
         ShowBrickAtIndex(index);
     }
 
@@ -52,11 +60,7 @@ public class BricksMenuEvents : MonoBehaviour
     {
         EnsureBricksCache();
         
-        if (index == bricksCache.Count - 1)
-            index = 0;
-        else
-            index++;
-        
+        index = (index == bricksCache.Count - 1) ? 0 : index + 1;
         ShowBrickAtIndex(index);
     }
 
@@ -72,18 +76,31 @@ public class BricksMenuEvents : MonoBehaviour
     {
         index = i;
 
+        infoContainer.Clear(); // Remove old labels
+
         var brick = bricksCache[i];
-        Debug.Log($"Brick [{i}]: DesignID={brick.designID}, UUID={brick.uuid}, Parts={brick.parts.Count}");
+
+        // Brick label
+        infoContainer.Add(new Label($"Brick [{i}] - DesignID: {brick.designID}, UUID: {brick.uuid}, Parts: {brick.parts.Count}"));
+        //Debug.Log($"Brick [{i}]: DesignID={brick.designID}, UUID={brick.uuid}, Parts={brick.parts.Count}");
 
         foreach (var part in brick.parts)
         {
+            // Part label (indented)
+            var partLabel = new Label($"  Part - UUID: {part.uuid}, DesignID: {part.designID}, Type: {part.partType}, Materials: {part.materials}");
             Debug.Log($"  Part: UUID={part.uuid}, DesignID={part.designID}, Type={part.partType}, Materials={part.materials}");
+
+            infoContainer.Add(partLabel);
 
             if (part.bones != null)
             {
                 foreach (var bone in part.bones)
                 {
-                    Debug.Log($"    Bone: UUID={bone.uuid}, Transformation={bone.transformation}");
+                    // Bone label (more indented)
+                    var boneLabel = new Label($"    Bone - UUID: {bone.uuid}, Transformation: {bone.transformation}");
+                    //Debug.Log($"    Bone: UUID={bone.uuid}, Transformation={bone.transformation}");
+
+                    infoContainer.Add(boneLabel);
                 }
             }
         }
