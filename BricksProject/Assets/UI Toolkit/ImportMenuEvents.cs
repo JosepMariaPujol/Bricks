@@ -29,28 +29,22 @@ public class ImportMenuEvents : MonoBehaviour
         selectLabel = root.Q<Label>("SelectLabel");
         contentLabel = root.Q<Label>("ContentLabel");
         
-        // Hide inputs until a file is selected
-        selectInput.style.display = DisplayStyle.None;
-        contentInput.style.display = DisplayStyle.None;
-        selectLabel.style.display = DisplayStyle.None;
-        contentLabel.style.display = DisplayStyle.None;
-        importButton.style.display = DisplayStyle.None;
-
         // Register button callback
-        selectButton.RegisterCallback<ClickEvent>(OnSelectClick);
-        importButton.RegisterCallback<ClickEvent>(OnImportClick);
+        selectButton?.RegisterCallback<ClickEvent>(OnSelectClick);
+        importButton?.RegisterCallback<ClickEvent>(OnImportClick);
 
+        // Hide inputs until a file is selected
+        //SetUIVisible(false);
+        
+        //EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 
     private void OnDisable()
     {
         selectButton?.UnregisterCallback<ClickEvent>(OnSelectClick);
         importButton?.UnregisterCallback<ClickEvent>(OnImportClick);
-    }
-
-    private void OnImportClick(ClickEvent evt)
-    {
-        Debug.Log("Import button clicked. Implement import functionality here.");
+        
+        //EditorApplication.playModeStateChanged -= OnPlayModeChanged;
     }
     
     private void OnSelectClick(ClickEvent evt)
@@ -63,17 +57,17 @@ public class ImportMenuEvents : MonoBehaviour
             filePath = path;
             ReadFile(path);
 
-            // Show input fields after file selection
-            selectLabel.style.display = DisplayStyle.Flex;
-            selectInput.style.display = DisplayStyle.Flex;
-            contentLabel.style.display = DisplayStyle.Flex;
-            contentInput.style.display = DisplayStyle.Flex;
-            importButton.style.display = DisplayStyle.Flex;
-
             // Update UI values
             selectInput.value = filePath;
             contentInput.value = fileContents;
+            
+            //SetUIVisible(true);
         }
+    }
+    
+    private void OnImportClick(ClickEvent evt)
+    {
+        Debug.Log("Import button clicked. Implement import functionality here.");
     }
 
     private void ReadFile(string path)
@@ -87,5 +81,35 @@ public class ImportMenuEvents : MonoBehaviour
         {
             Debug.LogError($"❌ Failed to read file: {ex.Message}");
         }
+    }
+    
+    private void SetUIVisible(bool visible)
+    {
+        var display = visible ? DisplayStyle.Flex : DisplayStyle.None;
+
+        selectLabel.style.display = display;
+        selectInput.style.display = display;
+        contentLabel.style.display = display;
+        contentInput.style.display = display;
+        importButton.style.display = display;
+    }
+    
+    //Automatically reset UI when exiting Play Mode
+    private void OnPlayModeChanged(PlayModeStateChange state)
+    {
+        if (state == PlayModeStateChange.ExitingPlayMode || state == PlayModeStateChange.EnteredEditMode)
+        {
+            ResetRuntimeUI();
+        }
+    }
+
+    private void ResetRuntimeUI()
+    {
+        filePath = "";
+        fileContents = "";
+        if (selectInput != null) selectInput.value = "";
+        if (contentInput != null) contentInput.value = "";
+        SetUIVisible(false);
+        Debug.Log("🔄 UI reset after exiting Play Mode");
     }
 }

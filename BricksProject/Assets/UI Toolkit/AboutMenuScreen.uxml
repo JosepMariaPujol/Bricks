@@ -1,6 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=36d7cd5e932fc4aa5a18ac116132cd4d&amp;type=3#MainMenuStyle"/>
     <ui:VisualElement name="Container" style="flex-grow: 1;">
-        <ui:Label text="Bricks" name="Header" class="header"/>
+        <ui:Label text="About" name="Header" class="header"/>
+        <ui:Label text="BricksProject imports and reads data from LXFML and displays it using UIToolkit.  Made by Josep Maria Pujol" name="AboutLabel" class="label"/>
+        <ui:Button text="Back" name="BackButton" class="button" style="background-image: url(&quot;project://database/Assets/UI/Textures/UI_atlas.psd?fileID=3353583685574914904&amp;guid=68de98d899585b7469e0fb40a0fcbc56&amp;type=3#bt_08&quot;);"/>
     </ui:VisualElement>
 </ui:UXML>
