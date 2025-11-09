@@ -12,7 +12,6 @@ public class TestLXFML : MonoBehaviour
     void Start()
     {
         // Parse all bricks from the raw LXFML text
-        
         List<Brick> bricks = LxfmlParser.ParseLxfml(rawLXFMLText);
 
         if (index < 0 || index >= bricks.Count)

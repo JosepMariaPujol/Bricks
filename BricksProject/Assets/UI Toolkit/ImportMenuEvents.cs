@@ -17,7 +17,7 @@ public class ImportMenuEvents : MonoBehaviour
     public Transform bricksMenuCameraTransform;
 
     private string filePath = "";
-    private string fileContents = "";
+    public string fileContents = "";
 
     private void Awake()
     {
