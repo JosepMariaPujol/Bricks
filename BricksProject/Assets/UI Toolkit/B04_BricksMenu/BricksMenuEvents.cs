@@ -6,24 +6,25 @@ using System.Collections.Generic;
 public class BricksMenuEvents : MonoBehaviour
 {
     private UIDocument uiDocument;
+    private Label headerLabel;
     private Button previousButton;
     private Button nextButton;
-
-    private int index;
 
     [SerializeField]
     private ImportMenuEvents importMenuEvents;
 
     private List<Brick> bricksCache;
-
     private VisualElement infoContainer; // Container for brick info
+
+    private int index = -1;
 
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
-
+        
         // Query UI elements by name
+        headerLabel = root.Q<Label>("Header");
         previousButton = root.Q<Button>("PreviousButton");
         nextButton = root.Q<Button>("NextButton");
 
@@ -32,12 +33,17 @@ public class BricksMenuEvents : MonoBehaviour
         nextButton?.RegisterCallback<ClickEvent>(OnNextClick);
 
         // Create a container for labels if not in UXML
-        infoContainer = root.Q<VisualElement>("InfoContainer");
+        infoContainer = root.Q<VisualElement>("BrickInfoLabelContainer");
         if (infoContainer == null)
         {
             infoContainer = new VisualElement();
-            infoContainer.name = "InfoContainer";
+            infoContainer.name = "BrickInfoLabelContainer";
+            infoContainer.style.height = 300; // Fixed height
+            infoContainer.style.width = 420; // Slightly wider than labels
             infoContainer.style.flexDirection = FlexDirection.Column;
+
+            infoContainer.style.color = Color.white;
+
             root.Add(infoContainer);
         }
     }
@@ -75,32 +81,34 @@ public class BricksMenuEvents : MonoBehaviour
     private void ShowBrickAtIndex(int i)
     {
         index = i;
-
+        
         infoContainer.Clear(); // Remove old labels
 
         var brick = bricksCache[i];
-
+        
         // Brick label
-        infoContainer.Add(new Label($"Brick [{i}] - DesignID: {brick.designID}, UUID: {brick.uuid}, Parts: {brick.parts.Count}"));
-        //Debug.Log($"Brick [{i}]: DesignID={brick.designID}, UUID={brick.uuid}, Parts={brick.parts.Count}");
+        if (headerLabel != null)
+            //headerLabel.text = $"Brick [{i}]  -  DesignID: {brick.designID}, UUID: {brick.uuid}";
+            headerLabel.text = $"[{i}] - Brick {brick.designID} [{brick.uuid}]";
+
+        infoContainer.Add(new Label($"Parts: {brick.parts.Count}:"));
 
         foreach (var part in brick.parts)
         {
-            // Part label (indented)
-            var partLabel = new Label($"  Part - UUID: {part.uuid}, DesignID: {part.designID}, Type: {part.partType}, Materials: {part.materials}");
-            Debug.Log($"  Part: UUID={part.uuid}, DesignID={part.designID}, Type={part.partType}, Materials={part.materials}");
+            // Part label
+            infoContainer.Add(new Label($" Part {part.designID} ({part.partType}, materials: {part.materials})"));
 
-            infoContainer.Add(partLabel);
-
+            // Spacing
+            infoContainer.Add(new Label($""));
+            
             if (part.bones != null)
             {
                 foreach (var bone in part.bones)
                 {
-                    // Bone label (more indented)
-                    var boneLabel = new Label($"    Bone - UUID: {bone.uuid}, Transformation: {bone.transformation}");
-                    //Debug.Log($"    Bone: UUID={bone.uuid}, Transformation={bone.transformation}");
-
-                    infoContainer.Add(boneLabel);
+                    // Bone label
+                    
+                    infoContainer.Add(new Label($"  Bone {bone.uuid}"));
+                    infoContainer.Add(new Label($"    Transformation: ({bone.transformation}"));
                 }
             }
         }
