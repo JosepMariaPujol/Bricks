@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499c9efab9c6a4ceb8fb7bc1f0a67fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImportMenuEvents
+  bricksMenuCameraTransform: {fileID: 0}
 --- !u!114 &149382321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,7 +677,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.005105949, y: -0.6005829, z: 0.0038353899, w: 0.799537}
-  m_LocalPosition: {x: 20.4, y: 20.4, z: -99.4}
+  m_LocalPosition: {x: 59.4, y: 20.4, z: -99.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1033,6 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499c9efab9c6a4ceb8fb7bc1f0a67fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImportMenuEvents
+  bricksMenuCameraTransform: {fileID: 903904183}
 --- !u!1 &481644816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,6 +1359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5286d90ad8de14eecbf25fb2dfea5c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuEvents
+  aboutMenuCameraTransform: {fileID: 310060236}
+  importMenuCameraTransform: {fileID: 1056276139}
 --- !u!1 &781665321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,6 +1851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893809264}
   - component: {fileID: 893809265}
+  - component: {fileID: 893809266}
   m_Layer: 5
   m_Name: AboutMenuScreenUI
   m_TagString: Untagged
@@ -1892,6 +1897,19 @@ MonoBehaviour:
   m_PivotReferenceSize: 1
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &893809266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893809263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945a7216fee9c4977b41087a1bf51175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AboutMenuEvents
+  mainMenuCameraTransform: {fileID: 1693780470}
 --- !u!1 &903904182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3086,7 @@ GameObject:
   - component: {fileID: 2030601202}
   - component: {fileID: 2030601201}
   m_Layer: 0
-  m_Name: BrickssImportMenuBlackboard
+  m_Name: BricksMenuBlackboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

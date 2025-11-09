@@ -6,33 +6,65 @@ public class MainMenuEvents : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Button startButton;
+    private Button aboutButton;
+    private Button quitButton;
+
+    public Transform aboutMenuCameraTransform;
+    public Transform importMenuCameraTransform;
 
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
-        
-        startButton = uiDocument.rootVisualElement.Q("StartButton") as Button;
+        var root = uiDocument.rootVisualElement;
+
+        // Query UI elements by name
+        startButton = root.Q<Button>("StartButton");
+        aboutButton = root.Q<Button>("AboutButton");
+        quitButton = root.Q<Button>("QuitButton");
+
+        // Register button callback
         startButton.RegisterCallback<ClickEvent>(OnPlayStartClick);
-        
-        Button quitButton = uiDocument.rootVisualElement.Q("QuitButton") as Button;
-        quitButton.RegisterCallback<ClickEvent>(OnPlayQuitClick);
+        aboutButton.RegisterCallback<ClickEvent>(OnAboutClick);
+        quitButton.RegisterCallback<ClickEvent>(OnQuitClick);
     }
+    
 
     private void OnDisable()
     {
         startButton.UnregisterCallback<ClickEvent>(OnPlayStartClick);
-        startButton.UnregisterCallback<ClickEvent>(OnPlayQuitClick);
+        
+        aboutButton.UnregisterCallback<ClickEvent>(OnAboutClick);
+        
+        quitButton.UnregisterCallback<ClickEvent>(OnQuitClick);
     }
 
     private void OnPlayStartClick(ClickEvent evt)
     {
-        
-        
-        Debug.Log("You pressed the Start Button");
+        if (importMenuCameraTransform == null)
+        {
+            Debug.LogWarning("Import Menu Camera Transform is not assigned.");
+            return;
+        }
+
+        // Move the main camera to the target transform
+        Camera.main.transform.position = importMenuCameraTransform.position;
+        Camera.main.transform.rotation = importMenuCameraTransform.rotation;
     }
     
+    private void OnAboutClick(ClickEvent evt)
+    {
+        if (aboutMenuCameraTransform == null)
+        {
+            Debug.LogWarning("About Menu Camera Transform is not assigned.");
+            return;
+        }
+
+        // Move the main camera to the target transform
+        Camera.main.transform.position = aboutMenuCameraTransform.position;
+        Camera.main.transform.rotation = aboutMenuCameraTransform.rotation;
+    }
     
-    private void OnPlayQuitClick(ClickEvent evt)
+    private void OnQuitClick(ClickEvent evt)
     {
         // Stops Play Mode in the Editor
         EditorApplication.isPlaying = false; 

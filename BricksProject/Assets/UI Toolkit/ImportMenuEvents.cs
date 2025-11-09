@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -12,7 +13,9 @@ public class ImportMenuEvents : MonoBehaviour
     private TextField contentInput;
     private Label selectLabel;
     private Label contentLabel;
-    
+
+    public Transform bricksMenuCameraTransform;
+
     private string filePath = "";
     private string fileContents = "";
 
@@ -28,25 +31,22 @@ public class ImportMenuEvents : MonoBehaviour
         contentInput = root.Q<TextField>("ContentInput");
         selectLabel = root.Q<Label>("SelectLabel");
         contentLabel = root.Q<Label>("ContentLabel");
-        
+
+        // Hide inputs until a file is selected
+        if (importButton != null)
+            importButton.style.display = DisplayStyle.None;
+
         // Register button callback
         selectButton?.RegisterCallback<ClickEvent>(OnSelectClick);
         importButton?.RegisterCallback<ClickEvent>(OnImportClick);
-
-        // Hide inputs until a file is selected
-        //SetUIVisible(false);
-        
-        //EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 
     private void OnDisable()
     {
         selectButton?.UnregisterCallback<ClickEvent>(OnSelectClick);
         importButton?.UnregisterCallback<ClickEvent>(OnImportClick);
-        
-        //EditorApplication.playModeStateChanged -= OnPlayModeChanged;
     }
-    
+
     private void OnSelectClick(ClickEvent evt)
     {
         // Open file picker
@@ -57,17 +57,25 @@ public class ImportMenuEvents : MonoBehaviour
             filePath = path;
             ReadFile(path);
 
+            importButton.style.display = DisplayStyle.Flex;
+
             // Update UI values
             selectInput.value = filePath;
             contentInput.value = fileContents;
-            
-            //SetUIVisible(true);
         }
     }
-    
+
     private void OnImportClick(ClickEvent evt)
     {
-        Debug.Log("Import button clicked. Implement import functionality here.");
+        if (bricksMenuCameraTransform == null)
+        {
+            Debug.LogWarning("Bricks Menu Camera Transform is not assigned.");
+            return;
+        }
+
+        // Move the main camera to the target transform
+        Camera.main.transform.position = bricksMenuCameraTransform.position;
+        Camera.main.transform.rotation = bricksMenuCameraTransform.rotation;
     }
 
     private void ReadFile(string path)
@@ -82,7 +90,7 @@ public class ImportMenuEvents : MonoBehaviour
             Debug.LogError($"❌ Failed to read file: {ex.Message}");
         }
     }
-    
+
     private void SetUIVisible(bool visible)
     {
         var display = visible ? DisplayStyle.Flex : DisplayStyle.None;
@@ -92,24 +100,5 @@ public class ImportMenuEvents : MonoBehaviour
         contentLabel.style.display = display;
         contentInput.style.display = display;
         importButton.style.display = display;
-    }
-    
-    //Automatically reset UI when exiting Play Mode
-    private void OnPlayModeChanged(PlayModeStateChange state)
-    {
-        if (state == PlayModeStateChange.ExitingPlayMode || state == PlayModeStateChange.EnteredEditMode)
-        {
-            ResetRuntimeUI();
-        }
-    }
-
-    private void ResetRuntimeUI()
-    {
-        filePath = "";
-        fileContents = "";
-        if (selectInput != null) selectInput.value = "";
-        if (contentInput != null) contentInput.value = "";
-        SetUIVisible(false);
-        Debug.Log("🔄 UI reset after exiting Play Mode");
     }
 }
