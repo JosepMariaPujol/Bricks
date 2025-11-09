@@ -57,7 +57,8 @@ public class ImportMenuEvents : MonoBehaviour
             filePath = path;
             ReadFile(path);
 
-            importButton.style.display = DisplayStyle.Flex;
+            if (importButton != null)
+                importButton.style.display = DisplayStyle.Flex;
 
             // Update UI values
             selectInput.value = filePath;
@@ -83,11 +84,11 @@ public class ImportMenuEvents : MonoBehaviour
         try
         {
             fileContents = File.ReadAllText(path);
-            Debug.Log($"✅ Successfully read file: {path}");
+            Debug.Log($"Successfully read file: {path}");
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"❌ Failed to read file: {ex.Message}");
+            Debug.LogError($"Failed to read file: {ex.Message}");
         }
     }
 
