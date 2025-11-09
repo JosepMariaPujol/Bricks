@@ -1,5 +1,5 @@
 :root {
-    -unity-font-definition: url("project://database/Assets/UI/Fonts/DynaPuff-Medium.ttf?fileID=12800000&guid=878b0c34017fe4af78ef740149645645&type=3#DynaPuff-Medium");
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/UI/Fonts/DynaPuff-Medium.ttf?fileID=12800000&guid=878b0c34017fe4af78ef740149645645&type=3#DynaPuff-Medium");
     font-size: 40px;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .button {
-    background-image: url("project://database/Assets/UI/Textures/UI_atlas.psd?fileID=-1719211324008201725&guid=68de98d899585b7469e0fb40a0fcbc56&type=3#bt_10");
+    background-image: url("project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas.psd?fileID=-1719211324008201725&guid=68de98d899585b7469e0fb40a0fcbc56&type=3#bt_10");
     width: 220px;
     height: 60px;
     border-top-left-radius: 10px;
@@ -19,10 +19,12 @@
     border-bottom-left-radius: 10px;
     font-size: 20px;
     margin-top: 50px;
-    -unity-font-definition: url("project://database/Assets/UI/Fonts/DynaPuff-Medium.ttf?fileID=12800000&guid=878b0c34017fe4af78ef740149645645&type=3#DynaPuff-Medium");
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/UI/Fonts/DynaPuff-Medium.ttf?fileID=12800000&guid=878b0c34017fe4af78ef740149645645&type=3#DynaPuff-Medium");
     color: rgb(255, 255, 255);
     align-self: center;
-    transition-duration: 0.35s;
+    transition-duration: 0.25s;
+    margin-right: 25px;
+    margin-left: 25px;
 }
 
 .button:hover {

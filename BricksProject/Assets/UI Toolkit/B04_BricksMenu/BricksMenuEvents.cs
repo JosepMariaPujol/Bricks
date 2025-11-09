@@ -7,16 +7,20 @@ public class BricksMenuEvents : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Label headerLabel;
+    private Toggle treeListToggle;
     private Button previousButton;
     private Button nextButton;
 
     [SerializeField]
     private ImportMenuEvents importMenuEvents;
-
+    
+    [SerializeField]
+    private Transform brickPiece;
+    
     private List<Brick> bricksCache;
     private VisualElement infoContainer; // Container for brick info
 
-    private int index = -1;
+    private int index = 0;
 
     private void Awake()
     {
@@ -27,6 +31,7 @@ public class BricksMenuEvents : MonoBehaviour
         headerLabel = root.Q<Label>("Header");
         previousButton = root.Q<Button>("PreviousButton");
         nextButton = root.Q<Button>("NextButton");
+        treeListToggle = root.Q<Toggle>("TreeListToggle");
 
         // Register button callback
         previousButton?.RegisterCallback<ClickEvent>(OnPreviousClick);
@@ -57,17 +62,15 @@ public class BricksMenuEvents : MonoBehaviour
     private void OnPreviousClick(ClickEvent evt)
     {
         EnsureBricksCache();
-        
         index = (index == 0) ? bricksCache.Count - 1 : index - 1;
-        ShowBrickAtIndex(index);
+        (treeListToggle.value ? (System.Action<int>)ShowBrickTreeAtIndex : ShowBrickTableAtIndex).Invoke(index);
     }
 
     private void OnNextClick(ClickEvent evt)
     {
         EnsureBricksCache();
-        
         index = (index == bricksCache.Count - 1) ? 0 : index + 1;
-        ShowBrickAtIndex(index);
+        (treeListToggle.value ? (System.Action<int>)ShowBrickTreeAtIndex : ShowBrickTableAtIndex).Invoke(index);
     }
 
     private void EnsureBricksCache()
@@ -78,12 +81,10 @@ public class BricksMenuEvents : MonoBehaviour
         }
     }
 
-    private void ShowBrickAtIndex(int i)
+    private void ShowBrickTreeAtIndex(int i)
     {
         index = i;
-        
         infoContainer.Clear(); // Remove old labels
-
         var brick = bricksCache[i];
         
         // Brick label
@@ -112,5 +113,72 @@ public class BricksMenuEvents : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private void ShowBrickTableAtIndex(int i)
+    {
+        index = i;
+        infoContainer.Clear(); // Remove old labels
+        var brick = bricksCache[i];
+
+        // Header
+        if (headerLabel != null)
+            headerLabel.text = $"[{i}] - Brick {brick.designID} [{brick.uuid}]";
+
+        // Column titles
+        var headerRow = new VisualElement();
+        headerRow.style.flexDirection = FlexDirection.Row;
+        headerRow.style.justifyContent = Justify.SpaceBetween;
+        headerRow.style.paddingLeft = 5;
+        headerRow.style.paddingRight = 5;
+        headerRow.style.marginBottom = 5;
+        headerRow.style.unityFontStyleAndWeight = FontStyle.Bold;
+
+        headerRow.Add(new Label("Part ID") { style = { flexGrow = 1, minWidth = 300 } });
+        headerRow.Add(new Label("Part Type") { style = { flexGrow = 1, minWidth = 300 } });
+        headerRow.Add(new Label("Materials") { style = { flexGrow = 1, minWidth = 300 } });
+        headerRow.Add(new Label("Bone UUID") { style = { flexGrow = 2, minWidth = 900 } });
+        headerRow.Add(new Label("Transformation") { style = { flexGrow = 3, minWidth = 2000 } });
+
+        infoContainer.Add(headerRow);
+
+        // Separator
+        var separator = new VisualElement();
+        separator.style.height = 1;
+        separator.style.backgroundColor = Color.gray;
+        separator.style.marginBottom = 5;
+        infoContainer.Add(separator);
+
+        // Table rows
+        foreach (var part in brick.parts)
+        {
+            foreach (var bone in part.bones)
+            {
+                AddTableRow(part.designID, part.partType, part.materials, bone.uuid, bone.transformation);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Adds a single row to the infoContainer with proper spacing
+    /// </summary>
+    private void AddTableRow(string partId, string partType, string materials, string boneUuid, string transformation)
+    {
+        var row = new VisualElement();
+        row.style.flexDirection = FlexDirection.Row;
+        row.style.justifyContent = Justify.SpaceBetween;
+        row.style.paddingLeft = 5;
+        row.style.paddingRight = 5;
+        row.style.marginBottom = 24;       // spacing between rows
+        row.style.marginTop = 24;       // spacing between rows
+        row.style.minHeight = 24;         // ensures row is tall enough for text
+
+        row.Add(new Label(partId) { style = { flexGrow = 1, minWidth = 300 } });
+        row.Add(new Label(partType) { style = { flexGrow = 1, minWidth = 300 } });
+        row.Add(new Label(materials) { style = { flexGrow = 1, minWidth = 300 } });
+        row.Add(new Label(boneUuid) { style = { flexGrow = 2, minWidth = 900 } });
+        row.Add(new Label(transformation) { style = { flexGrow = 5, minWidth = 2000, whiteSpace = WhiteSpace.Normal } });
+        
+        infoContainer.Add(row);
     }
 }
