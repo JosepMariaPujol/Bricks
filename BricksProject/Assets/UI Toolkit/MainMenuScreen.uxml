@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=36d7cd5e932fc4aa5a18ac116132cd4d&amp;type=3#MainMenuStyle"/>
     <ui:VisualElement name="Container" style="flex-grow: 1;">
-        <ui:Label text="Bricks" name="Header" class="header"/>
+        <ui:Label text="Main Menu" name="Header" class="header"/>
         <ui:Button text="Start" name="StartButton" class="button"/>
         <ui:Button text="Quit" name="QuitButton" class="button" style="background-image: url(&quot;project://database/Assets/UI/Textures/UI_atlas.psd?fileID=4994445659741841102&amp;guid=68de98d899585b7469e0fb40a0fcbc56&amp;type=3#bt_12&quot;);"/>
     </ui:VisualElement>
