@@ -93,7 +93,12 @@ public class BricksMenuEvents : MonoBehaviour
     {
         if (bricksCache == null || bricksCache.Count == 0)
         {
-            bricksCache = LxfmlParser.ParseLxfml(importMenuEvents.fileContents);
+            string errorMessage;
+            if (!LxfmlParser.TryParseLxfml(importMenuEvents.fileContents, out bricksCache, out errorMessage))
+            {
+                Debug.LogError($"Failed to parse LXFML: {errorMessage}");
+                bricksCache = new List<Brick>(); // fallback empty list
+            }
         }
     }
 
