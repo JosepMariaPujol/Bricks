@@ -1,13 +1,13 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=36d7cd5e932fc4aa5a18ac116132cd4d&amp;type=3#MainMenuStyle"/>
+    <Style src="project://database/Assets/UI%20Toolkit/B01_MainMenu/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=36d7cd5e932fc4aa5a18ac116132cd4d&amp;type=3#MainMenuStyle"/>
     <ui:VisualElement name="Container" style="flex-grow: 1;">
         <ui:Label text="Import" name="Header" class="header"/>
         <ui:Label text="File Reader" name="SubHeader" class="label"/>
-        <ui:Button text="Select File" name="SelectButton" class="button" style="background-image: url(&quot;project://database/Assets/UI/Textures/UI_atlas.psd?fileID=3353583685574914904&amp;guid=68de98d899585b7469e0fb40a0fcbc56&amp;type=3#bt_08&quot;);"/>
+        <ui:Button text="Select File" name="SelectButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-6920807121513462889&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_08&quot;);"/>
         <ui:Label text="Selected File:" name="SelectLabel" class="label"/>
         <ui:TextField label="" placeholder-text="" name="SelectInput" class="textfield"/>
         <ui:Label text="File Content:" name="ContentLabel" class="label"/>
         <ui:TextField label="" placeholder-text="" name="ContentInput" multiline="true" class="textfield" style="height: 200px;"/>
-        <ui:Button text="Import File" name="ImportButton" class="button" style="background-image: url(&quot;project://database/Assets/UI/Textures/UI_atlas.psd?fileID=-1719211324008201725&amp;guid=68de98d899585b7469e0fb40a0fcbc56&amp;type=3#bt_10&quot;);"/>
+        <ui:Button text="Import File" name="ImportButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-4054376527590237830&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_10&quot;);"/>
     </ui:VisualElement>
 </ui:UXML>

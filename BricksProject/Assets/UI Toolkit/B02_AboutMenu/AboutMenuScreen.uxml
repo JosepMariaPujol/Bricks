@@ -3,6 +3,6 @@
     <ui:VisualElement name="Container" style="flex-grow: 1;">
         <ui:Label text="About" name="Header" class="header"/>
         <ui:TextField label="" multiline="true" name="AboutInput" class="textfield" style="height: 200px; width: 600px; font-size: 12px;"/>
-        <ui:Button text="Back" name="BackButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas.psd?fileID=3353583685574914904&amp;guid=68de98d899585b7469e0fb40a0fcbc56&amp;type=3#bt_08&quot;);"/>
+        <ui:Button text="Back" name="BackButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-6920807121513462889&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_08&quot;);"/>
     </ui:VisualElement>
 </ui:UXML>
