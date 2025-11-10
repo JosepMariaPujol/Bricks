@@ -32,9 +32,7 @@ public class MainMenuEvents : MonoBehaviour
     private void OnDisable()
     {
         startButton.UnregisterCallback<ClickEvent>(OnPlayStartClick);
-        
         aboutButton.UnregisterCallback<ClickEvent>(OnAboutClick);
-        
         quitButton.UnregisterCallback<ClickEvent>(OnQuitClick);
     }
 

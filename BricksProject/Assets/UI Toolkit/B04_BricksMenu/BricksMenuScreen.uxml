@@ -4,8 +4,9 @@
         <ui:Label text="Bricks" name="Header" class="header"/>
         <ui:Toggle label="TreeList Display" name="TreeListToggle" value="true" class="label" style="margin-left: 50px; font-size: 35px;"/>
         <ui:VisualElement name="Container" style="flex-grow: 1; flex-direction: row; align-content: flex-end;">
-            <ui:Button text="&lt;-- Previous" name="PreviousButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-6920807121513462889&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_08&quot;);"/>
-            <ui:Button text="Next --&gt;" name="NextButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-6920807121513462889&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_08&quot;);"/>
+            <ui:Button text="&lt;-- Previous" name="PreviousButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-4054376527590237830&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_10&quot;);"/>
+            <ui:Button text="Next --&gt;" name="NextButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-4054376527590237830&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_10&quot;);"/>
+            <ui:Button text="Back" name="BackButton" class="button" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=6198793866533023631&amp;guid=48444a19530ce49a3bb22fee72ab07e5&amp;type=3#bt_09&quot;);"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

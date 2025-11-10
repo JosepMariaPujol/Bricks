@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -49,7 +48,7 @@ public class ImportMenuEvents : MonoBehaviour
 
     private void OnSelectClick(ClickEvent evt)
     {
-        // Open file picker
+        // Open file picker window for text files
         string path = EditorUtility.OpenFilePanel("Select a text file", "", "*");
 
         if (!string.IsNullOrEmpty(path))
@@ -57,6 +56,7 @@ public class ImportMenuEvents : MonoBehaviour
             filePath = path;
             ReadFile(path);
 
+            // Show import button after file selection
             if (importButton != null)
                 importButton.style.display = DisplayStyle.Flex;
 
@@ -90,16 +90,5 @@ public class ImportMenuEvents : MonoBehaviour
         {
             Debug.LogError($"Failed to read file: {ex.Message}");
         }
-    }
-
-    private void SetUIVisible(bool visible)
-    {
-        var display = visible ? DisplayStyle.Flex : DisplayStyle.None;
-
-        selectLabel.style.display = display;
-        selectInput.style.display = display;
-        contentLabel.style.display = display;
-        contentInput.style.display = display;
-        importButton.style.display = display;
     }
 }

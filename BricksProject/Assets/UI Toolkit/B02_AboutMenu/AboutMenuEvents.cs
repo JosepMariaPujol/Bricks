@@ -44,7 +44,7 @@ public class AboutMenuEvents : MonoBehaviour
     {
         if (mainMenuCameraTransform == null)
         {
-            Debug.LogWarning("⚠️ Main Menu Camera Transform is not assigned.");
+            Debug.LogWarning("Main Menu Camera Transform is not assigned.");
             return;
         }
 

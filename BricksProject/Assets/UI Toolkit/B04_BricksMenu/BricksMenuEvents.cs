@@ -10,12 +10,12 @@ public class BricksMenuEvents : MonoBehaviour
     private Toggle treeListToggle;
     private Button previousButton;
     private Button nextButton;
+    private Button backButton;
+    
+    public Transform importCameraTransform;
 
     [SerializeField]
     private ImportMenuEvents importMenuEvents;
-    
-    [SerializeField]
-    private Transform brickPiece;
     
     private List<Brick> bricksCache;
     private VisualElement infoContainer; // Container for brick info
@@ -31,11 +31,13 @@ public class BricksMenuEvents : MonoBehaviour
         headerLabel = root.Q<Label>("Header");
         previousButton = root.Q<Button>("PreviousButton");
         nextButton = root.Q<Button>("NextButton");
+        backButton = root.Q<Button>("BackButton");
         treeListToggle = root.Q<Toggle>("TreeListToggle");
 
         // Register button callback
         previousButton?.RegisterCallback<ClickEvent>(OnPreviousClick);
         nextButton?.RegisterCallback<ClickEvent>(OnNextClick);
+        backButton?.RegisterCallback<ClickEvent>(OnBackClick);
 
         // Create a container for labels if not in UXML
         infoContainer = root.Q<VisualElement>("BrickInfoLabelContainer");
@@ -57,6 +59,20 @@ public class BricksMenuEvents : MonoBehaviour
     {
         previousButton?.UnregisterCallback<ClickEvent>(OnPreviousClick);
         nextButton?.UnregisterCallback<ClickEvent>(OnNextClick);
+        backButton?.UnregisterCallback<ClickEvent>(OnBackClick);
+    }
+    
+    private void OnBackClick(ClickEvent evt)
+    {
+        if (importCameraTransform == null)
+        {
+            Debug.LogWarning("Import Camera Transform is not assigned.");
+            return;
+        }
+
+        // Move the main camera to the target transform
+        Camera.main.transform.position = importCameraTransform.position;
+        Camera.main.transform.rotation = importCameraTransform.rotation;
     }
 
     private void OnPreviousClick(ClickEvent evt)

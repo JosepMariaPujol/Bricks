@@ -10,7 +10,7 @@
 }
 
 .button {
-    background-image: url("project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-4131201275070636363&guid=48444a19530ce49a3bb22fee72ab07e5&type=3#bt_03");
+    background-image: url("project://database/Assets/UI%20Toolkit/UI/Textures/UI_atlas%20smallselection.psd?fileID=-6920807121513462889&guid=48444a19530ce49a3bb22fee72ab07e5&type=3#bt_08");
     width: 220px;
     height: 60px;
     border-top-left-radius: 10px;
