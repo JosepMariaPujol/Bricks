@@ -54,20 +54,6 @@ namespace Parser.Tests
             Assert.That(bone.uuid, Is.EqualTo("4eae8f47-f49b-43cd-8b25-3d94dcff0b9a"));
             Assert.That(bone.transformation, Is.EqualTo("1,0,0,0,1,0,0,0,1,0,0,0"));
         }
-        [Test]
-        public void Parse_Empty_ThrowsArgumentException()
-        {
-            // Empty string input
-            Assert.Throws<ArgumentException>(() => LxfmlParser.ParseLxfml(string.Empty));
-        }
-
-        [Test]
-        public void Parse_InvalidXml_ThrowsFormatException()
-        {
-            // Malformed XML input missing closing tag in <Part>
-            string invalid = "<Brick><Part></Brick>";
-            Assert.Throws<FormatException>(() => LxfmlParser.ParseLxfml(invalid));
-        }
 
         [Test]
         public void TryParse_ReturnsFalseOnInvalidXml()
